@@ -1,30 +1,19 @@
 package main
 
 import (
-	"book-management/book"
-	"book-management/menu"
+	"book-management/handlers"
 	"fmt"
+	"net/http"
 )
 
 func main() {
-	for {
-		menu.ShowMenu()
+	// Registrar rutas
+	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.HandleFunc("/api/books", handlers.HandleBooks) // CRUD para libros
 
-		var choice int
-		fmt.Scanf("%d\n", &choice)
-
-		switch choice {
-		case 1:
-			book.AddBook()
-		case 2:
-			book.ListBooks()
-		case 3:
-			book.SearchBook()
-		case 4:
-			fmt.Println("Saliendo del sistema...")
-			return
-		default:
-			fmt.Println("Opción no válida. Intente de nuevo.")
-		}
+	// Iniciar el servidor
+	fmt.Println("Servidor iniciado en http://localhost:8080")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		fmt.Println("Error al iniciar el servidor:", err)
 	}
 }

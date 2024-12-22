@@ -1,0 +1,18 @@
+/* Estilo del fondo radial */
+body {
+    background: radial-gradient(circle, #2c3e50, #34495e);
+    color: white;
+}
+
+/* Estilo personalizado para el navbar */
+.navbar {
+    background-color: #1e2a33;
+}
+
+.navbar-brand, .nav-link {
+    color: white;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #1abc9c;
+}
